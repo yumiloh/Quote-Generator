@@ -14,17 +14,22 @@ namespace Quote_Generator
             string quote = Console.ReadLine();
             string inputPicturePath = Console.ReadLine();
             int picPosition;
+            bool isInteger = false;
             //bool isInteger= int.TryParse(Console.ReadLine(), out picPosition);
             
             //while loop to validate position
-            while (!(int.TryParse(Console.ReadLine(), out picPosition)))
+            while (!isInteger)
             {
-                Console.WriteLine ("Enter an integer:");
-                
-                
-                                
+                Console.WriteLine("Enter an integer:");
+                isInteger = int.TryParse(Console.ReadLine(), out picPosition);
 
+                if (isInteger==true)
+                {
+                    break;
+                }
+                
             }
+
 
             GeneratePicInputModel generatePicModel = new GeneratePicInputModel();
             generatePicModel.Quote = quote;
