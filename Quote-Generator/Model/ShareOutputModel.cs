@@ -1,5 +1,3 @@
-using System;
-
 namespace Quote_Generator.Model
 {
     public class ShareOutputModel
