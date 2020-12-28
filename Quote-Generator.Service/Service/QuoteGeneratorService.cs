@@ -1,13 +1,13 @@
 using MailKit.Net.Smtp;
 using MimeKit;
-using Quote_Generator.Model;
+using Quote_Generator.Service.Model;
 using System;
 using System.Drawing;
 using System.IO;
 
 namespace Quote_Generator.Service
 {
-    class QuoteGeneratorService : IQuoteGeneratorService
+    public class QuoteGeneratorService : IQuoteGeneratorService
     {
         private const string SENDER_EMAIL = "janedoe.orsted@gmail.com";
         private string getImagePath(string imagePath)

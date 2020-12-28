@@ -2,7 +2,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 
 
-namespace Quote_Generator.Model
+namespace Quote_Generator.Service.Model
 {
     public class ShareInputModel
     {

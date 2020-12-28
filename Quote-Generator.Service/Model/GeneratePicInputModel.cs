@@ -1,7 +1,7 @@
 using System;
 using System.IO;
 
-namespace Quote_Generator.Model 
+namespace Quote_Generator.Service.Model 
 {
     public class GeneratePicInputModel
     {

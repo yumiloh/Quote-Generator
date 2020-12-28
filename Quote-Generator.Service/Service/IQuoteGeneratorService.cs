@@ -1,4 +1,4 @@
-using Quote_Generator.Model;
+using Quote_Generator.Service.Model;
 
 namespace Quote_Generator.Service
 {
