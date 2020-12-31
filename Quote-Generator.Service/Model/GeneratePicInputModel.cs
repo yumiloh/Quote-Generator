@@ -58,7 +58,7 @@ namespace Quote_Generator.Service.Model
             int coordinate;
             if (!int.TryParse(strXCoordinate, out coordinate))
                 throw new InvalidOperationException();
-            if (coordinate > width)
+            if ((coordinate > width) || (coordinate < 0))
                 throw new InvalidDataException();
             else
                 xCoordinate = coordinate;
@@ -75,7 +75,7 @@ namespace Quote_Generator.Service.Model
             int coordinate;
             if (!int.TryParse(strYCoordinate, out coordinate))
                 throw new InvalidOperationException();
-            if (coordinate > height)
+            if ((coordinate > height) || (coordinate < 0))
                 throw new InvalidDataException();
             else
                 yCoordinate = coordinate;

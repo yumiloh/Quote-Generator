@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Text.RegularExpressions;
 
@@ -22,7 +23,7 @@ namespace Quote_Generator.Service.Model
                 }
                 else
                 {
-                    throw new InvalidDataException();
+                    throw new InvalidDataException();                     
                 }                 
             }
         }

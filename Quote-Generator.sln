@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.29926.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quote-Generator", "Quote-Generator\Quote-Generator.csproj", "{E8F5F516-B3FB-4F97-8989-5B3FC9B71C94}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quote-Generator.Service", "Quote-Generator.Service\Quote-Generator.Service.csproj", "{72043397-7B95-41D9-8FDA-4C417AEA1DA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Quote-Generator.Service", "Quote-Generator.Service\Quote-Generator.Service.csproj", "{72043397-7B95-41D9-8FDA-4C417AEA1DA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quote-Generator-WPF", "Quote-Generator-WPF\Quote-Generator-WPF.csproj", "{F3FF6FDF-EDC3-47D2-BA85-76AC573DBD92}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{72043397-7B95-41D9-8FDA-4C417AEA1DA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{72043397-7B95-41D9-8FDA-4C417AEA1DA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{72043397-7B95-41D9-8FDA-4C417AEA1DA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3FF6FDF-EDC3-47D2-BA85-76AC573DBD92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3FF6FDF-EDC3-47D2-BA85-76AC573DBD92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3FF6FDF-EDC3-47D2-BA85-76AC573DBD92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3FF6FDF-EDC3-47D2-BA85-76AC573DBD92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -72,7 +72,6 @@ namespace Quote_Generator
         {
             bool isXValid, isYValid;
             Console.Write($"Enter x-coordinate [ < {width} ]: ");
-
             do
             {
                 try
@@ -90,7 +89,6 @@ namespace Quote_Generator
                     Console.WriteLine($"Please enter a valid numerical value [ x < {width} ]: ");
                     isXValid = false;
                 }
-
             } while (!isXValid);
 
             Console.Write($"Enter y-coordinate [ < {height} ]: ");
