@@ -10,7 +10,7 @@ namespace Quote_Generator.Service.Model
         private int fontSize;
         public bool IsXValid { get; set; }
         public bool IsYValid { get; set; }
-        public string Quote { get; set; }        
+        public string Quote { get; set; }             
         public int FontSize
         {
             get

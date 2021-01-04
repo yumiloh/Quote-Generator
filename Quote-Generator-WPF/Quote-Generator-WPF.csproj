@@ -15,4 +15,10 @@
     <ProjectReference Include="..\Quote-Generator.Service\Quote-Generator.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="QuotesWithoutSource.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

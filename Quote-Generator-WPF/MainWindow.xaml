@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Quote_Generator_WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="750" ResizeMode="NoResize">
+        Title="MainWindow" Height="700" Width="750" ResizeMode="NoResize" Loaded="Window_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -15,35 +15,37 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Label Content="Quote Generator" HorizontalAlignment="Left" Margin="282,14,0,0" VerticalAlignment="Top" FontFamily="Times New Roman" FontSize="24" BorderThickness="0" Height="38" Width="171" Grid.Column="1"/>
-        <Label Content="Position of quote: " Margin="123,170,0,0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox Name="InputQuoteText" Text="" TextWrapping="Wrap" FontFamily="Times New Roman" Height="22" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="315,87,0,0" Grid.Column="1"/>
+        <Label Content="Position of quote: " Margin="123,191,0,0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox Name="InputQuoteText"  MaxLength="65" VerticalScrollBarVisibility="Visible" Text="" TextWrapping="Wrap" FontFamily="Times New Roman" Height="41" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="315,87,0,0" Grid.Column="1" LostFocus="InputQuote_LostFocus" TextChanged="quote_TextChanged"/>
         <Label Content="Input quote:" Margin="123,84,0,0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <Label Content="Input picture path: " Margin="123,130,0,0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <Button Name="Preview" Content="Preview image" HorizontalAlignment="Left" Margin="381,290,0,0" VerticalAlignment="Top" Click="Preview_Button_Click" Height="22" Width="90" Grid.Column="1"/>
-        <Button Name="ShareViaEmail" Content="Share via email" HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="90" Grid.Column="1" Margin="381,581,0,0" IsEnabled="False" Click="ShareViaEmail_ButtonClicked"/>
-        <TextBox Name="EmailAddressInput" Text="" TextWrapping="Wrap" FontFamily="Times New Roman" Height="22" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="315,377,0,0" Grid.Column="1" IsEnabled="False"/>
-        <Label Content="Email address: " Margin="123,377,0,0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <Label Content="Email subject: " Margin="123,428,0,0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox Name="EmailHeaderInput" Text="" TextWrapping="Wrap" FontFamily="Times New Roman" Height="22" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="315,431,0,0" Grid.Column="1" IsEnabled="False"/>
-        <Label Content="Email body: " Margin="123,505,0,0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox Name="EmailBodyInput" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Text="" TextWrapping="Wrap" Height="80" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="315,480,0,0" Grid.Column="1" IsEnabled="False"/>
-        <TextBox Name="XCoordinateInput" HorizontalAlignment="Left" Height="22" Margin="512,170,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" 
+        <Label Content="Input picture path: " Margin="123,151,0,0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Button Name="Preview" Content="Preview image" HorizontalAlignment="Left" Margin="381,311,0,0" VerticalAlignment="Top" Click="Preview_Button_Click" Height="22" Width="90" Grid.Column="1"/>
+        <Button Name="ShareViaEmail" Content="Share via email" HorizontalAlignment="Left" VerticalAlignment="Top" Height="22" Width="90" Grid.Column="1" Margin="381,602,0,0" IsEnabled="False" Click="ShareViaEmail_ButtonClicked"/>
+        <TextBox Name="EmailAddressInput" Text="" TextWrapping="Wrap" FontFamily="Times New Roman" Height="22" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="315,398,0,0" Grid.Column="1" IsEnabled="False"/>
+        <Label Content="Email address: " Margin="123,398,0,0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Label Content="Email subject: " Margin="123,449,0,0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox Name="EmailHeaderInput" Text="" TextWrapping="Wrap" FontFamily="Times New Roman" Height="22" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="315,452,0,0" Grid.Column="1" IsEnabled="False"/>
+        <Label Content="Email body: " Margin="123,526,0,0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox Name="EmailBodyInput" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Text="" TextWrapping="Wrap" Height="80" Width="250" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="315,501,0,0" Grid.Column="1" IsEnabled="False"/>
+        <TextBox Name="XCoordinateInput" HorizontalAlignment="Left" Height="22" Margin="512,191,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" 
             Width="58" FontFamily="Times New Roman" Grid.Column="1" IsEnabled="False"/>
-        <TextBox Name="YCoordinateInput" HorizontalAlignment="Left" Height="22" Margin="512,210,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" 
+        <TextBox Name="YCoordinateInput" HorizontalAlignment="Left" Height="22" Margin="512,231,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" 
             Width="58" FontFamily="Times New Roman" RenderTransformOrigin="0.25,1.611" Grid.Column="1" IsEnabled="False"/>
-        <Button Name="Browse" Content="Browse" Grid.Column="1" HorizontalAlignment="Left" Margin="528,135,0,0" VerticalAlignment="Top" Click="Browse_Button_Click"/>
-        <TextBox Name="PicturePath" Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="315,135,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="202" IsEnabled="False"/>
-        <Label Content="Font size [20-40]: " Margin="123,240,0,0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox Name="FontSize" HorizontalAlignment="Left" Height="22" Margin="315,243,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" 
+        <Button Name="Browse" Content="Browse" Grid.Column="1" HorizontalAlignment="Left" Margin="528,156,0,0" VerticalAlignment="Top" Click="Browse_Button_Click"/>
+        <TextBox Name="PicturePath" Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="315,156,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="202" IsEnabled="False"/>
+        <Label Content="Font size [20-40]: " Margin="123,261,0,0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBox Name="FontSize" HorizontalAlignment="Left" Height="22" Margin="315,264,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" 
             Width="105" FontFamily="Times New Roman" Grid.Column="1"/>
-        <ComboBox Name="toContinue" Grid.Column="1" HorizontalAlignment="Left" Margin="315,333,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False">            
+        <ComboBox Name="toContinue" Grid.Column="1" HorizontalAlignment="Left" Margin="315,354,0,0" VerticalAlignment="Top" Width="120" IsEnabled="False">
             <ComboBoxItem Content="Yes"></ComboBoxItem>
             <ComboBoxItem Content="No"></ComboBoxItem>
         </ComboBox>
-        <Label Content="Would you like to continue?" Grid.Column="1" HorizontalAlignment="Left" Margin="123,333,0,0" VerticalAlignment="Top"/>
-        <TextBlock Name="XCoordinateTextBlock" Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="315,170,0,0" Text="X-Coordinate:" TextWrapping="Wrap" VerticalAlignment="Top" Width="192"/>
-        <TextBlock Name="YCoordinateTextBlock" Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="315,210,0,0" Text="Y-Coordinate:" TextWrapping="Wrap" VerticalAlignment="Top" Width="192"/>
-        <Button Name="ToConfirm" Content="Confirm" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="477,335,0,0" VerticalAlignment="Top" Click="ToConfirm_Click" IsEnabled="False"/>
+        <Label Content="Would you like to continue?" Grid.Column="1" HorizontalAlignment="Left" Margin="123,354,0,0" VerticalAlignment="Top"/>
+        <TextBlock Name="XCoordinateTextBlock" Grid.Column="1" HorizontalAlignment="Left" Height="20" Margin="315,191,0,0" Text="X-Coordinate:" TextWrapping="Wrap" VerticalAlignment="Top" Width="192"/>
+        <TextBlock Name="YCoordinateTextBlock" Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="315,231,0,0" Text="Y-Coordinate:" TextWrapping="Wrap" VerticalAlignment="Top" Width="192"/>
+        <Button Name="ToConfirm" Content="Confirm" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="477,356,0,0" VerticalAlignment="Top" Click="ToConfirm_Click" IsEnabled="False"/>
+        <ComboBox Name="QuotesCombobox" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="528,87,0,0" VerticalAlignment="Top" Width="42" SelectionChanged="Quote_SelectionChanged"/>
+        <Label Name="CharactersRemaining" Content="65 Characters Remaining" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="28" Margin="357,123,0,0" VerticalAlignment="Top" Width="166"/>
 
     </Grid>
 </Window>

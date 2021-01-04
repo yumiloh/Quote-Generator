@@ -2,9 +2,11 @@
 using Quote_Generator.Service;
 using Quote_Generator.Service.Model;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows;
 
 namespace Quote_Generator_WPF
@@ -21,6 +23,7 @@ namespace Quote_Generator_WPF
         ShareOutputModel shareOutputModel = new ShareOutputModel();
         ShareInputModel shareInputModel = new ShareInputModel();
         string previousPicturePath = "";
+        List<string> sortedQuotesList = new List<string>();
 
         public MainWindow()
         {
@@ -29,21 +32,28 @@ namespace Quote_Generator_WPF
 
         private void Browse_Button_Click(object sender, RoutedEventArgs e)
         {
+            
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Image files (*.jpeg;*.png; *.jpg)|*.jpeg;*.png;*jpg|All files (*.*)|*.*";
-            openFileDialog.InitialDirectory = @"C:\Users\YUMIL\Downloads\Pictures\";
+            openFileDialog.InitialDirectory = @"C:\";
             openFileDialog.ShowDialog();
             PicturePath.Text = openFileDialog.FileName;
-            inputModel.InputPicturePath = openFileDialog.FileName;
-            Image img = Image.FromFile(inputModel.InputPicturePath, true);
-            int width = img.Width;
-            int height = img.Height;
-            img.Dispose();
-
-            XCoordinateTextBlock.Text = ($"X-Coordinate (max width: {width}): ");
-            YCoordinateTextBlock.Text = ($"Y-Coordinate (max height: {height}): ");
-            XCoordinateInput.IsEnabled = true;
-            YCoordinateInput.IsEnabled = true;
+            try
+            {
+                inputModel.InputPicturePath = openFileDialog.FileName;
+                Image img = Image.FromFile(inputModel.InputPicturePath, true);
+                int width = img.Width;
+                int height = img.Height;
+                img.Dispose();
+                XCoordinateTextBlock.Text = ($"X-Coordinate (max width: {width}): ");
+                YCoordinateTextBlock.Text = ($"Y-Coordinate (max height: {height}): ");
+                XCoordinateInput.IsEnabled = true;
+                YCoordinateInput.IsEnabled = true;
+            }
+            catch (InvalidOperationException)
+            {
+                MessageBox.Show("Please select a picture.");
+            }            
         }
 
         private void Preview_Button_Click(object sender, RoutedEventArgs e)
@@ -124,7 +134,6 @@ namespace Quote_Generator_WPF
                 ToConfirm.IsEnabled = false;
             }
         }
-
         private void ShareViaEmail_ButtonClicked(object sender, RoutedEventArgs e)
         {
             ShareViaEmail.IsEnabled = false;
@@ -239,6 +248,38 @@ namespace Quote_Generator_WPF
                 invalidFontSize = "Invalid font size. Enter numerical value between 20 - 40. ";
             }
             return invalidFontSize;
+        }
+
+        private void Quote_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            InputQuoteText.Text = (string)QuotesCombobox.SelectedItem;
+        }
+        public List<string> sortedQuotes()
+        {
+            string filePath = @".\QuotesWithoutSource.txt";
+            List<string> quoteList = File.ReadLines(filePath).ToList();
+            List<string> sortedQuotes = quoteList.OrderBy(q => q).ThenBy(q => q.Length).ToList();
+            return sortedQuotes;
+        }
+
+        private void InputQuote_LostFocus(object sender, RoutedEventArgs e)
+        {
+            //List<string> sortedQuotesList = sortedQuotes();
+            string quoteEntered = InputQuoteText.Text;
+            List<string> searchedList = sortedQuotesList.Where(q => q.Contains(quoteEntered)).ToList();
+            QuotesCombobox.ItemsSource = searchedList;            
+        }
+        private void quote_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            int inputQuoteLength, remainingQuoteLength;
+            inputQuoteLength = InputQuoteText.Text.Length;
+            remainingQuoteLength = (65 - inputQuoteLength) ;            
+            CharactersRemaining.Content = ( remainingQuoteLength.ToString() + " Characters Remaining");
+        }        
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            sortedQuotesList = sortedQuotes();
+            QuotesCombobox.ItemsSource = sortedQuotesList;
         }
     }
 }

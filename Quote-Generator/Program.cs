@@ -19,7 +19,6 @@ namespace Quote_Generator
                 IQuoteGeneratorService generateQuote = new QuoteGeneratorService();
                 GeneratePicOutputModel outputModel;
                 ShareOutputModel shareOutputModel;
-
                 do
                 {
                     validateImagePath(ref inputModel);
@@ -67,7 +66,6 @@ namespace Quote_Generator
             validateFontSize(inputModel);
             validatePosition(width, height, ref inputModel);
         }
-
         public static void validatePosition(int width, int height, ref GeneratePicInputModel inputModel)
         {
             bool isXValid, isYValid;
